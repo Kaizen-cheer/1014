@@ -9,14 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Mitr:wght@300;400;500&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-paper: #e0f2ff;
-            --black: #000000;
-            --white: #ffffff;
-            --pink-bright: #ff5ebc;
-            --blue-bright: #3ea6ff;
-            --yellow-bright: #ffde00;
-            --purple-bright: #a855f7;
-            --grid-line: rgba(0, 0, 0, 0.08);
+            /* เปลี่ยนเป็นโทน ดำ-น้ำเงิน */
+            --bg-paper: #0a192f;        /* สีกรมท่าเข้ม */
+            --black: #020617;           /* สีดำสนิท */
+            --white: #f8fafc;           /* สีขาวนวล */
+            --pink-bright: #38bdf8;     /* เปลี่ยนจากชมพูเป็นฟ้าสว่างเพื่อให้เข้าโทน */
+            --blue-bright: #1e40af;     /* น้ำเงินเข้ม */
+            --yellow-bright: #60a5fa;   /* เปลี่ยนจากเหลืองเป็นฟ้าอ่อน */
+            --purple-bright: #1d4ed8;   /* น้ำเงินสด */
+            --grid-line: rgba(255, 255, 255, 0.05); /* เส้นตารางสีจางๆ */
         }
 
         * {
@@ -31,7 +32,7 @@
             background-color: var(--bg-paper);
             background-image: linear-gradient(var(--grid-line) 1px, transparent 1px);
             background-size: 100% 30px;
-            color: var(--black);
+            color: var(--white); /* เปลี่ยนสีฟอนต์หลักเป็นสีขาว */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -45,8 +46,8 @@
             position: absolute;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.6;
-            filter: drop-shadow(2px 2px 0px white);
+            opacity: 0.3;
+            filter: drop-shadow(2px 2px 0px var(--black));
         }
 
         .container {
@@ -80,32 +81,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid var(--black);
+            border: 3px solid var(--white); /* ขอบขาวเพื่อให้เด่นบนพื้นหลังเข้ม */
             text-transform: uppercase;
-            box-shadow: 3px 3px 0 var(--black);
+            box-shadow: 3px 3px 0 var(--blue-bright);
         }
 
         .char-box:nth-child(odd) { transform: rotate(-3deg); }
         .char-box:nth-child(even) { transform: rotate(3deg); }
-        .char-box:nth-child(1) { background: var(--black); color: var(--white); }
-        .char-box:nth-child(2) { background: var(--blue-bright); }
-        .char-box:nth-child(3) { background: var(--white); }
-        .char-box:nth-child(4) { background: var(--pink-bright); color: var(--white); }
-        .char-box:nth-child(5) { background: var(--yellow-bright); }
-        .char-box:nth-child(6) { background: var(--purple-bright); color: var(--white); }
-        .char-box:nth-child(7) { background: var(--white); }
-        .char-box:nth-child(8) { background: var(--black); color: var(--white); }
-        .char-box:nth-child(9) { background: var(--pink-bright); }
+        .char-box:nth-child(1) { background: var(--white); color: var(--black); }
+        .char-box:nth-child(2) { background: var(--blue-bright); color: white; }
+        .char-box:nth-child(3) { background: var(--purple-bright); color: white; }
+        .char-box:nth-child(4) { background: var(--pink-bright); color: var(--black); }
+        .char-box:nth-child(5) { background: var(--yellow-bright); color: var(--black); }
+        .char-box:nth-child(6) { background: var(--blue-bright); color: white; }
+        .char-box:nth-child(7) { background: var(--white); color: var(--black); }
+        .char-box:nth-child(8) { background: var(--black); color: var(--white); border-color: var(--white); }
+        .char-box:nth-child(9) { background: var(--pink-bright); color: var(--black); }
 
         .sub-header {
             font-family: 'Special Elite', cursive;
             font-size: 0.85rem;
             font-weight: bold;
             letter-spacing: 1px;
-            background: var(--white);
+            background: var(--blue-bright);
+            color: white;
             display: inline-block;
             padding: 2px 10px;
-            border: 2px solid var(--black);
+            border: 2px solid var(--white);
             transform: rotate(-1deg);
         }
 
@@ -115,13 +117,12 @@
             gap: 15px;
             margin-top: 25px;
             padding: 15px;
-            background: var(--white);
-            border: 3px solid var(--black);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.05); /* โปร่งแสงเล็กน้อย */
+            border: 3px solid var(--white);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
             position: relative;
         }
 
-        /* ปรับเส้นแบ่งกลางให้แม่นยำ */
         .grid-layout::after {
             content: '';
             position: absolute;
@@ -130,15 +131,16 @@
             transform: translateX(-50%);
             width: 2px; 
             height: 100%;
-            background: var(--black);
-            opacity: 0.2;
+            background: var(--white);
+            opacity: 0.1;
             z-index: 1; 
         }
 
         .item-card {
-            border: 3px solid var(--black);
+            border: 3px solid var(--white);
             padding: 20px 10px;
-            background: var(--white);
+            background: var(--black);
+            color: var(--white);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -152,8 +154,8 @@
         .item-card:active { transform: scale(0.95); }
 
         .sticker-icon {
-            background: white;
-            border: 3px solid var(--black);
+            background: var(--white);
+            border: 2px solid var(--black);
             border-radius: 50%;
             width: 55px;
             height: 55px;
@@ -161,20 +163,23 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 8px;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
             padding: 5px;
         }
+        
+        .sticker-icon svg { stroke: var(--black); }
 
         .date-tag {
             position: absolute;
             top: -10px; left: -5px;
-            background: var(--black);
-            color: var(--white);
+            background: var(--pink-bright);
+            color: var(--black);
             padding: 2px 8px;
             font-size: 0.65rem;
             font-weight: 700;
             transform: rotate(-5deg);
             z-index: 5;
+            border: 1px solid var(--white);
         }
 
         .card-label {
@@ -186,7 +191,6 @@
 
         .card-desc { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
-        /* แก้ไขส่วน GN SPECIAL ให้กึ่งกลาง */
         .item-card.featured {
             grid-column: 1 / -1;
             background: var(--blue-bright);
@@ -195,34 +199,34 @@
             text-align: center;
             padding: 20px;
             gap: 20px;
-            justify-content: center; /* กึ่งกลาง */
+            justify-content: center;
             align-items: center;
+            border-color: var(--white);
         }
 
         .featured .sticker-icon {
             width: 65px; height: 65px;
             margin-bottom: 0;
-            background: white;
+            background: var(--white);
             color: var(--blue-bright);
             flex-shrink: 0;
         }
 
         .featured .card-label { font-size: 1.6rem; line-height: 1.1; }
 
-        .item-card.yellow { background: var(--yellow-bright); }
-        .item-card.pink { background: var(--pink-bright); color: white; }
+        .item-card.yellow { background: var(--purple-bright); }
+        .item-card.pink { background: #1e293b; color: white; }
 
-        /* แก้ไขส่วน IMPORTANT RULES ให้กึ่งกลาง */
         .rules-section {
             margin-top: 45px;
-            background: #fff8e1;
-            border: 3px solid var(--black);
+            background: var(--black);
+            border: 3px solid var(--white);
             padding: 35px 20px 30px;
             position: relative;
-            box-shadow: 8px 8px 0 var(--black);
+            box-shadow: 8px 8px 0 var(--blue-bright);
             display: flex;
             flex-direction: column;
-            align-items: center; /* กึ่งกลาง */
+            align-items: center;
             text-align: center;
         }
 
@@ -232,11 +236,11 @@
             left: 50%;
             transform: translateX(-50%) rotate(1deg);
             background: var(--pink-bright);
-            color: white;
+            color: var(--black);
             padding: 6px 30px;
             font-weight: bold;
-            border: 2px dashed white;
-            outline: 3px solid var(--black);
+            border: 2px dashed var(--black);
+            outline: 3px solid var(--white);
             white-space: nowrap;
             z-index: 10;
         }
@@ -244,12 +248,13 @@
         .rules-content {
             line-height: 1.8;
             width: 100%;
+            color: var(--white);
         }
 
         .thank-you-note {
             margin-top: 50px;
-            background: var(--white);
-            border: 2px solid var(--black);
+            background: var(--black);
+            border: 2px solid var(--white);
             padding: 20px;
             width: 100%;
             text-align: center;
@@ -263,7 +268,8 @@
             top: -15px; left: 50%;
             transform: translateX(-50%);
             background: var(--yellow-bright);
-            border: 2px solid var(--black);
+            color: var(--black);
+            border: 2px solid var(--white);
             padding: 2px 10px;
             font-weight: bold;
             font-size: 0.8rem;
@@ -278,13 +284,13 @@
 
         .social-sticker {
             width: 55px; height: 55px;
-            background: white;
+            background: var(--white);
             border: 3px solid var(--black);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 4px 4px 0 var(--black);
+            box-shadow: 4px 4px 0 var(--blue-bright);
             transition: 0.2s;
         }
 
@@ -293,20 +299,21 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             align-items: center; justify-content: center;
             padding: 20px;
         }
         .modal-overlay.active { display: flex; }
         .modal-content {
-            background: white;
-            border: 5px solid var(--black);
+            background: var(--bg-paper);
+            color: var(--white);
+            border: 5px solid var(--white);
             padding: 25px;
             width: 100%;
             max-width: 420px;
             position: relative;
-            box-shadow: 12px 12px 0 var(--yellow-bright);
+            box-shadow: 12px 12px 0 var(--blue-bright);
             max-height: 85vh;
             overflow-y: auto;
         }
@@ -314,7 +321,7 @@
         .price-row {
             display: flex;
             justify-content: space-between;
-            border-bottom: 2px dotted #eee;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 8px 0;
             font-size: 0.95rem;
         }
@@ -327,18 +334,18 @@
         }
         .link-btn {
             display: block;
-            background: #f8f9fa;
-            border: 2px solid var(--black);
+            background: var(--black);
+            border: 2px solid var(--white);
             padding: 10px;
             text-decoration: none;
-            color: black;
+            color: var(--white);
             font-size: 0.85rem;
             font-weight: 500;
             border-radius: 8px;
             transition: 0.2s;
             text-align: center;
         }
-        .link-btn:hover { background: var(--yellow-bright); }
+        .link-btn:hover { background: var(--blue-bright); }
 
         .feature-list {
             list-style: none;
@@ -353,15 +360,15 @@
             text-align: left;
         }
         .feature-list li::before {
-            content: '✿';
+            content: '✦';
             position: absolute;
             left: 0;
             color: var(--pink-bright);
         }
 
         .note-box {
-            background: #fff8e1;
-            border: 2px dashed #000;
+            background: rgba(0,0,0,0.3);
+            border: 2px dashed var(--white);
             padding: 10px;
             font-size: 0.8rem;
             margin-top: 15px;
@@ -371,8 +378,8 @@
         .close-btn {
             position: absolute;
             top: 10px; right: 10px;
-            background: var(--black);
-            color: white;
+            background: var(--white);
+            color: var(--black);
             border: none;
             width: 30px; height: 30px;
             border-radius: 50%;
@@ -385,11 +392,10 @@
     </style>
 </head>
 <body>
-
-    <svg class="bg-deco" style="top:10%; left:5%;" width="40" height="40" viewBox="0 0 24 24" fill="var(--yellow-bright)" stroke="black" stroke-width="1.5">
+    <svg class="bg-deco" style="top:10%; left:5%;" width="40" height="40" viewBox="0 0 24 24" fill="var(--yellow-bright)" stroke="white" stroke-width="1.5">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
     </svg>
-    <svg class="bg-deco" style="top:40%; right:2%;" width="30" height="30" viewBox="0 0 24 24" fill="var(--pink-bright)" stroke="black" stroke-width="1.5">
+    <svg class="bg-deco" style="top:40%; right:2%;" width="30" height="30" viewBox="0 0 24 24" fill="var(--pink-bright)" stroke="white" stroke-width="1.5">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
 
@@ -410,7 +416,6 @@
 
         <main>
             <div class="grid-layout">
-                <!-- Web Design Card -->
                 <div class="item-card yellow" onclick="openModal('webModal')">
                     <div class="date-tag">Discord</div>
                     <div class="sticker-icon">
@@ -420,7 +425,6 @@
                     <div class="card-desc">รายละเอียด & ตัวอย่าง</div>
                 </div>
 
-                <!-- Course Card -->
                 <div class="item-card pink" onclick="openModal('courseModal')">
                     <div class="date-tag">Discord</div>
                     <div class="sticker-icon">
@@ -430,9 +434,8 @@
                     <div class="card-desc">ราคาทำระบบ</div>
                 </div>
 
-                <!-- Featured: GN Special (จัดกึ่งกลาง) -->
                 <div class="item-card featured" onclick="openModal('gnSpecialModal')">
-                    <div class="date-tag" style="background:var(--pink-bright); left: 50%; transform: translateX(-50%) rotate(-3deg);">MOST POPULAR</div>
+                    <div class="date-tag" style="background:var(--pink-bright); color:black; left: 50%; transform: translateX(-50%) rotate(-3deg);">MOST POPULAR</div>
                     <div class="sticker-icon">
                         <svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
                     </div>
@@ -442,11 +445,10 @@
                 </div>
             </div>
 
-            <!-- Important Rules (จัดกึ่งกลาง) -->
             <section class="rules-section">
                 <div class="tape-deco">RULES SHOP</div>
                 <div class="rules-content">
-                    <p style="margin-bottom: 5px;">🌹 <b>กฎกติกาของร้านไดโน</b></p>
+                    <p style="margin-bottom: 5px;"><b>กฎกติกาของร้านไดโน</b></p>
                     <p style="font-size: 0.85rem;">• โอนเงินแล้วไม่คืนเงินทุกกรณี</p>
                     <p style="font-size: 0.85rem;">• ห้ามสแปมข้อความเด็ดขาด โปรดรออย่างใจเย็น</p>
                     <p style="font-size: 0.85rem;">• ยกเลิกหลังตรวจงาน ไม่คืนเงินและจะส่งงานตามปกติ</p>
@@ -467,12 +469,10 @@
         </main>
     </div>
 
-    <!-- Modals (ข้อมูลเดิมครบถ้วน) -->
-    
     <div class="modal-overlay" id="webModal" onclick="if(event.target==this) closeModal('webModal')">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('webModal')">×</button>
-            <h2 style="border-bottom:4px solid black; margin-bottom:15px; font-family:'Fredoka';">🖥️ ราคาทำเซิร์ฟเวอร์</h2>
+            <h2 style="border-bottom:4px solid var(--white); margin-bottom:15px; font-family:'Fredoka';">🖥️ ราคาทำเซิร์ฟเวอร์</h2>
             <div class="price-row"><span>ส่วนตัว</span><span class="price-val">79.-</span></div>
             <div class="price-row"><span>ร้านค้า</span><span class="price-val">99.-</span></div>
             <div class="price-row"><span>แก๊ง/แคลน/ครอบครัว</span><span class="price-val">109.-</span></div>
@@ -482,11 +482,10 @@
             <div style="margin-top:15px; font-size: 0.9rem;">
                 <b> 💀 บริการเพิ่มเติม</b><br>
                 • ตกแต่งห้อง เริ่มต้น 30.-<br>
-                • งานด่วน (เสร็จไว) x2 +50
-                • งานด่วน (เสร็จไว) x3 +70
-                
-                • งานด่วน (เสร็จไว) x4 +100
-                • งานด่วน (เสร็จไว) x5 +300
+                • งานด่วน (เสร็จไว) x2 +50<br>
+                • งานด่วน (เสร็จไว) x3 +70<br>
+                • งานด่วน (เสร็จไว) x4 +100<br>
+                • งานด่วน (เสร็จไว) x5 +300<br>
             </div>
             <div class="link-list">
                 <p style="font-weight:bold; font-size: 0.85rem; margin-top:10px;">✭ ตัวอย่างงาน:</p>
@@ -504,7 +503,7 @@
     <div class="modal-overlay" id="courseModal" onclick="if(event.target==this) closeModal('courseModal')">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('courseModal')">×</button>
-            <h2 style="border-bottom:4px solid black; margin-bottom:15px; font-family:'Fredoka';">เรทราคาทำระบบ</h2>
+            <h2 style="border-bottom:4px solid var(--white); margin-bottom:15px; font-family:'Fredoka';">เรทราคาทำระบบ</h2>
             <p style="font-weight: bold; color: var(--pink-bright);">ตัวอย่างงานในดิสร้านนะครับ</p>
             <ul class="feature-list">
                 <li>ราคาทำระบบเริ่มต้น 5.-</li>
@@ -512,7 +511,7 @@
                 <li>สามารถบรีฟรายละเอียดได้</li>
             </ul>
             <div style="text-align:center; margin-top:20px;">
-                <span style="font-size:2rem; font-weight:bold; color:var(--pink-bright);">เริ่มต้น 5.- บวกตามความยากง่าย</span>
+                <span style="font-size:1.5rem; font-weight:bold; color:var(--pink-bright);">เริ่มต้น 5.- บวกตามความยากง่าย</span>
             </div>
         </div>
     </div>
@@ -520,8 +519,8 @@
     <div class="modal-overlay" id="gnSpecialModal" onclick="if(event.target==this) closeModal('gnSpecialModal')">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('gnSpecialModal')">×</button>
-            <h2 style="border-bottom:4px solid black; margin-bottom:15px; font-family:'Fredoka';">เรทราคารับอื่นอื่นๆ</h2>
-            <p style="font-size: 0.85rem; background: var(--yellow-bright); display: inline-block; padding: 2px 8px; margin-bottom: 10px; border: 1.5px solid black;">สอบถามได้ครับ</p>
+            <h2 style="border-bottom:4px solid var(--white); margin-bottom:15px; font-family:'Fredoka';">เรทราคารับอื่นอื่นๆ</h2>
+            <p style="font-size: 0.85rem; background: var(--blue-bright); color:white; display: inline-block; padding: 2px 8px; margin-bottom: 10px; border: 1.5px solid var(--white);">สอบถามได้ครับ</p>
             <ul class="feature-list">
                 <li>รับแก้ระบบดิสคอร์ด</li>
                 <li>รับตกแต่งช่องต่างๆ</li>
